@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImgBB Uploader</title>
+    <title>Image Upload to ImgBB</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="background-overlay"></div>
     <div class="container">
-        <h1>ImgBB Uploader</h1>
+        <h1>Upload Image to ImgBB</h1>
         <form id="key-form">
             <input type="text" id="api-key-input" placeholder="Enter your ImgBB API Key" required>
             <div class="button-group">
@@ -21,6 +21,9 @@
             <input type="file" id="file-input" accept="image/*" required>
             <button type="submit">Upload Image</button>
         </form>
+        <div id="progress-container">
+            <progress id="upload-progress" value="0" max="100"></progress>
+        </div>
         <div id="result">
             <p>Uploaded Image URL:</p>
             <a id="image-url" href="#" target="_blank"></a>
@@ -31,7 +34,8 @@
     </div>
     <footer>
         <p>Created by <a href="https://github.com/RavenholmZombie" target="_blank">RavenholmZombie</a> as part of the <a href="https://github.com/Mesabrook-Development-Team" target="_blank">Mesabrook Development Team</a></p>
-    </footer>
+		<p>Site Version 0.0.2</p>
+	</footer>
     <script src="scripts.js"></script>
 </body>
 </html>

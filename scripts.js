@@ -45,10 +45,18 @@ document.getElementById('upload-form').addEventListener('submit', async function
     const formData = new FormData();
     formData.append('image', fileInput.files[0]);
 
+    const progressContainer = document.getElementById('progress-container');
+    const uploadProgress = document.getElementById('upload-progress');
+    progressContainer.style.display = 'block';
+
     try {
         const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
             method: 'POST',
-            body: formData
+            body: formData,
+            onUploadProgress: function(progressEvent) {
+                const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                uploadProgress.value = percentCompleted;
+            }
         });
 
         if (!response.ok) {
@@ -64,6 +72,8 @@ document.getElementById('upload-form').addEventListener('submit', async function
     } catch (error) {
         console.error('Error uploading image:', error);
         alert('Error uploading image. Please try again.');
+    } finally {
+        progressContainer.style.display = 'none';
     }
 });
 
